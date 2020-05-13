@@ -21,19 +21,19 @@ void free_list(stack_t *stack)
  */
 void init_vars(void)
 {
-	stack = NULL;
-	fp = NULL;
-	line = NULL;
+	variables.stack = NULL;
+	variables.fp = NULL;
+	variables.line = NULL;
 }
 /**
  * free_prog - free_prog
  */
 void free_prog(void)
 {
-	if (fp  != NULL)
-		fclose(fp);
-	if (line  != NULL)
-		free(line);
-	if (stack != NULL)
-		free_list(stack);
+	if (variables.fp  != NULL)
+		fclose(variables.fp);
+	if (variables.line  != NULL)
+		free(variables.line);
+	if (variables.stack != NULL)
+		free_list(variables.stack);
 }

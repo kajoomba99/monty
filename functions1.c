@@ -19,10 +19,9 @@ void verify_args(int c)
  */
 void open_monty_script(char *filename)
 {
+	variables.fp = fopen(filename, "r");
 
-	fp = fopen(filename, "r");
-
-	if (fp == NULL)
+	if (variables.fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		free_prog();
@@ -37,9 +36,9 @@ void read_monty_script(void)
 	int f_line = 1;
 	size_t len = 0;
 
-	while (getline(&line, &len, fp) != -1)
+	while (getline(&variables.line, &len, variables.fp) != -1)
 	{
-		choose_instruction(line, f_line);
+		choose_instruction(variables.line, f_line);
 		f_line++;
 	}
 }
@@ -64,7 +63,7 @@ void choose_instruction(char *line, unsigned int ln)
 		if (_isdigit(data) && strcmp(token, "push") == 0)
 		{
 			i_data = atoi(data);
-			push(&stack, i_data);
+			push(&variables.stack, i_data);
 			return;
 		}
 		else
@@ -78,7 +77,7 @@ void choose_instruction(char *line, unsigned int ln)
 	{
 		if (strcmp(token, options[i].opcode) == 0)
 		{
-			options[i].f(&stack, ln);
+			options[i].f(&variables.stack, ln);
 			break;
 		}
 	}

@@ -37,9 +37,23 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-stack_t *stack;
-FILE *fp;
-char *line;
+/**
+ * struct vars - global variables
+ * @stack: the opcode
+ * @fp: function to a pointer
+ * @line: is a variable char
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO Holberton project
+ */
+typedef struct vars
+{
+	stack_t *stack;
+	FILE *fp;
+	char *line;
+} vars_t;
+
+vars_t variables;
+
 stack_t *push(stack_t **stack, int data);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
