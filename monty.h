@@ -64,10 +64,10 @@ void add(stack_t **stack, unsigned int line_number);
 void verify_args(int c);
 void open_monty_script(char *filename);
 void read_monty_script(void);
-void choose_instruction(char *line, unsigned int line_number);
+void choose_instruction(unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 int _isdigit(char *number);
-void free_list(stack_t *stack);
+void free_list(void);
 void free_prog(void);
 void init_vars(void);
 #endif

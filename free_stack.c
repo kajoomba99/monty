@@ -1,13 +1,12 @@
 #include "monty.h"
 /**
  * free_list - free_list
- * @stack: stack
  */
-void free_list(stack_t *stack)
+void free_list(void)
 {
 	stack_t *p, *store;
 
-	p = stack;
+	p = variables.stack;
 
 	while (p != NULL)
 	{
@@ -35,5 +34,5 @@ void free_prog(void)
 	if (variables.line  != NULL)
 		free(variables.line);
 	if (variables.stack != NULL)
-		free_list(variables.stack);
+		free_list();
 }

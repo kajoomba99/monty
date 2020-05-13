@@ -38,16 +38,15 @@ void read_monty_script(void)
 
 	while (getline(&variables.line, &len, variables.fp) != -1)
 	{
-		choose_instruction(variables.line, f_line);
+		choose_instruction(f_line);
 		f_line++;
 	}
 }
 /**
  * choose_instruction - a function that choose any instruction.
- * @line: is a line give it for the token
  * @ln: is a unsigned integer fo count
  */
-void choose_instruction(char *line, unsigned int ln)
+void choose_instruction(unsigned int ln)
 {
 	char *token = NULL;
 	char *data = NULL;
@@ -55,13 +54,13 @@ void choose_instruction(char *line, unsigned int ln)
 
 	instruction_t options[] = {{"pall", pall}, {"pint", pint}, {"pop", pop},
 	{"swap", swap}, {"add", add}, {"nop", nop}, {NULL, NULL}};
-	token = strtok(line, " \n");
+	token = strtok(variables.line, " \n");
 	if (token == NULL)
 		return;
 	data = strtok(NULL, " \n");
-	if (data != NULL && token != NULL)
+	if (strcmp(token, "push") == 0)
 	{
-		if (_isdigit(data) && strcmp(token, "push") == 0)
+		if (data != NULL && _isdigit(data))
 		{
 			i_data = atoi(data);
 			push(&variables.stack, i_data);
@@ -74,6 +73,7 @@ void choose_instruction(char *line, unsigned int ln)
 			exit(EXIT_FAILURE);
 		}
 	}
+
 	for (i = 0; options[i].opcode; i++)
 	{
 		if (strcmp(token, options[i].opcode) == 0)
