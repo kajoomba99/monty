@@ -6,6 +6,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <ctype.h>
+#include <stdarg.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -48,4 +50,5 @@ FILE *open_monty_script(char *filename);
 void read_monty_script(FILE *fp);
 void choose_instruction(char *line, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+int _isdigit(char *number);
 #endif
