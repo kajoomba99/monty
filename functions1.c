@@ -35,7 +35,7 @@ FILE *open_monty_script(char *filename)
  */
 void read_monty_script(FILE *fp)
 {
-	int f_line = 0;
+	int f_line = 1;
 	char *line = NULL;
 	size_t len = 0;
 
