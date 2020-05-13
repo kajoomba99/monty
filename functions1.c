@@ -55,8 +55,9 @@ void choose_instruction(char *line, unsigned int ln)
 
 	instruction_t options[] = {{"pall", pall}, {"pint", pint}, {"pop", pop},
 	{"swap", swap}, {"add", add}, {"nop", nop}, {NULL, NULL}};
-
 	token = strtok(line, " \n");
+	if (token == NULL)
+		return;
 	data = strtok(NULL, " \n");
 	if (data != NULL && token != NULL)
 	{
