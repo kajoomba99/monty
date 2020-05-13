@@ -4,10 +4,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdarg.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -38,6 +38,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 stack_t *stack;
+FILE *fp;
+char *line;
 stack_t *push(stack_t **stack, int data);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -46,9 +48,12 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 /***************************/
 void verify_args(int c);
-FILE *open_monty_script(char *filename);
-void read_monty_script(FILE *fp);
+void open_monty_script(char *filename);
+void read_monty_script(void);
 void choose_instruction(char *line, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 int _isdigit(char *number);
+void free_list(stack_t *stack);
+void free_prog(void);
+void init_vars(void);
 #endif

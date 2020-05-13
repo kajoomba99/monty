@@ -17,6 +17,7 @@ stack_t *push(stack_t **stack, int data)
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed");
+		free_prog();
 		exit(EXIT_FAILURE);
 	}
 
@@ -49,6 +50,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		free_prog();
 		exit(EXIT_FAILURE);
 	}
 	temp = *stack;

@@ -8,27 +8,27 @@
  */
 int main(int argc, char **argv)
 {
-	FILE *fp;
-
+	init_vars();
 	verify_args(argc);
-	fp = open_monty_script(argv[1]);
-	read_monty_script(fp);
-	fclose(fp);
+	open_monty_script(argv[1]);
+	read_monty_script();
+	free_prog();
 	return (0);
 }
 
 /**
  * swap- swap the first elemento for the second one element
  * @stack: This is the head of the parameters
- * @line_number: is a number of the line when there is a wrong.
+ * @ln: is a number of the line when there is a wrong.
  */
-void swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int ln)
 {
 	int temp;
 
 	if (stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", ln);
+		free_prog();
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack)->n;

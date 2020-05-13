@@ -8,6 +8,7 @@ void verify_args(int c)
 	if (c != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
+		free_prog();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -16,27 +17,24 @@ void verify_args(int c)
  * @filename: name of the file for open with monty
  * Return: a pointer
  */
-FILE *open_monty_script(char *filename)
+void open_monty_script(char *filename)
 {
 
-	FILE *fp = fopen(filename, "r");
+	fp = fopen(filename, "r");
 
 	if (fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
+		free_prog();
 		exit(EXIT_FAILURE);
 	}
-
-	return (fp);
 }
 /**
  * read_monty_script - a function that read the monty script.
- * @fp: is a pointer
  */
-void read_monty_script(FILE *fp)
+void read_monty_script(void)
 {
 	int f_line = 1;
-	char *line = NULL;
 	size_t len = 0;
 
 	while (getline(&line, &len, fp) != -1)
@@ -56,11 +54,8 @@ void choose_instruction(char *line, unsigned int ln)
 	char *data = NULL;
 	int i_data = 0, i = 0;
 
-	instruction_t options[] = {
-		{"pall", pall}, {"pint", pint}, {"pop", pop},
-		{"swap", swap}, {"add", add}, {"nop", nop},
-		{NULL, NULL}
-	};
+	instruction_t options[] = {{"pall", pall}, {"pint", pint}, {"pop", pop},
+	{"swap", swap}, {"add", add}, {"nop", nop}, {NULL, NULL}};
 
 	token = strtok(line, " \n");
 	data = strtok(NULL, " \n");
@@ -75,6 +70,7 @@ void choose_instruction(char *line, unsigned int ln)
 		else
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", ln);
+			free_prog();
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -89,6 +85,7 @@ void choose_instruction(char *line, unsigned int ln)
 	if (options[i].opcode == NULL)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", ln, token);
+		free_prog();
 		exit(EXIT_FAILURE);
 	}
 }
