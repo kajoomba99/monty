@@ -14,6 +14,7 @@ void add(stack_t **stack, unsigned int ln)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", ln);
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 
 	add = tmp->n + tmp->prev->n;
@@ -37,6 +38,7 @@ void sub(stack_t **stack, unsigned int ln)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", ln);
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
 	sub = tmp->n - tmp->prev->n;
@@ -60,12 +62,14 @@ void _div(stack_t **stack, unsigned int ln)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", ln);
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
 	if ((*stack)->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", ln);
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 
 	div = tmp->n / tmp->prev->n;
@@ -89,6 +93,7 @@ void _mul(stack_t **stack, unsigned int ln)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", ln);
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
 	mul = tmp->n * tmp->prev->n;
@@ -112,6 +117,7 @@ void _mod(stack_t **stack, unsigned int ln)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", ln);
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
 	mod = tmp->n % tmp->prev->n;

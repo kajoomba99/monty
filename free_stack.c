@@ -35,5 +35,4 @@ void free_prog(void)
 		free(variables.line);
 	if (variables.stack != NULL)
 		free_list();
-	exit(EXIT_FAILURE);
 }

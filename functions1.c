@@ -9,6 +9,7 @@ void verify_args(int c)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 }
 /**
@@ -24,6 +25,7 @@ void open_monty_script(char *filename)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 }
 /**
@@ -49,7 +51,6 @@ void choose_instruction(unsigned int ln)
 	char *token = NULL;
 	char *data = NULL;
 	int i_data = 0, i = 0;
-
 	instruction_t options[] = {{"pall", pall}, {"pint", pint}, {"pop", pop},
 	{"swap", swap}, {"add", add}, {"sub", sub}, {"div", _div}, {"mul", _mul},
 	{"mod", _mod},
@@ -70,9 +71,9 @@ void choose_instruction(unsigned int ln)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", ln);
 			free_prog();
+			exit(EXIT_FAILURE);
 		}
 	}
-
 	for (i = 0; options[i].opcode; i++)
 	{
 		if (strcmp(token, options[i].opcode) == 0)
@@ -85,6 +86,7 @@ void choose_instruction(unsigned int ln)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", ln, token);
 		free_prog();
+		exit(EXIT_FAILURE);
 	}
 }
 /**
