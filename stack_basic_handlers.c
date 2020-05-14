@@ -4,11 +4,23 @@
  * push - The opcode push pushes an element to the stack.
  * @stack: This is the head of the parameters
  * @data: unity of information of the imput parameters.
+ * @ln: ln
  * Return: the new node
  */
-stack_t *push(stack_t **stack, int data)
+stack_t *push(stack_t **stack, char *data, unsigned int ln)
 {
+	int i_data = 0;
 	stack_t *new_node = NULL;
+
+	if (data != NULL && _isdigit(data))
+		i_data = atoi(data);
+
+	else
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", ln);
+		free_prog();
+		exit(EXIT_FAILURE);
+	}
 
 	if (stack == NULL)
 		return (NULL);
@@ -23,7 +35,7 @@ stack_t *push(stack_t **stack, int data)
 
 	new_node->next = NULL;
 	new_node->prev = NULL;
-	new_node->n = data;
+	new_node->n = i_data;
 	if (*stack == NULL)
 	{
 		*stack = new_node;

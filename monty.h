@@ -54,7 +54,7 @@ typedef struct vars
 
 vars_t variables;
 
-stack_t *push(stack_t **stack, int data);
+stack_t *push(stack_t **stack, char *data, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
@@ -66,7 +66,8 @@ void sub(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
-void _mod(stack_t **stack, unsigned int ln);
+void _mod(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
 /***************************/
 void verify_args(int c);
 void open_monty_script(char *filename);

@@ -50,29 +50,20 @@ void choose_instruction(unsigned int ln)
 {
 	char *token = NULL;
 	char *data = NULL;
-	int i_data = 0, i = 0;
+	int i = 0;
+
 	instruction_t options[] = {{"pall", pall}, {"pint", pint}, {"pop", pop},
-	{"swap", swap}, {"add", add}, {"sub", sub}, {"div", _div}, {"mul", _mul},
-	{"mod", _mod},
-	{"nop", nop}, {"pchar", pchar}, {"pstr", pstr}, {NULL, NULL}};
+	{"swap", swap}, {"add", add}, {"sub", sub}, {"div", _div},
+	{"mul", _mul}, {"mod", _mod}, {"nop", nop}, {"pchar", pchar},
+	{"pstr", pstr}, {"rotl", rotl}, {NULL, NULL}};
 	token = strtok(variables.line, " \n");
 	if (token == NULL || token[0] == '#')
 		return;
 	data = strtok(NULL, " \n");
 	if (strcmp(token, "push") == 0)
 	{
-		if (data != NULL && _isdigit(data))
-		{
-			i_data = atoi(data);
-			push(&variables.stack, i_data);
-			return;
-		}
-		else
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", ln);
-			free_prog();
-			exit(EXIT_FAILURE);
-		}
+		push(&variables.stack, data, ln);
+		return;
 	}
 	for (i = 0; options[i].opcode; i++)
 	{
