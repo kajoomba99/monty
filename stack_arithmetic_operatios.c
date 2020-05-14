@@ -116,11 +116,16 @@ void _mod(stack_t **stack, unsigned int ln)
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", ln);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", ln);
 		free_prog();
 		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
+	if ((*stack)->n == 0){
+		fprintf(stderr, "L%d: division by zero\n", ln);
+		free_prog();
+		exit(EXIT_FAILURE);
+	}
 	mod = tmp->n % tmp->prev->n;
 	tmp->n = mod;
 	free(tmp->prev);
