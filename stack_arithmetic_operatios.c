@@ -121,7 +121,8 @@ void _mod(stack_t **stack, unsigned int ln)
 		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
-	if ((*stack)->n == 0){
+	if ((*stack)->n == 0)
+	{
 		fprintf(stderr, "L%d: division by zero\n", ln);
 		free_prog();
 		exit(EXIT_FAILURE);
