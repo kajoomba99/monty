@@ -19,7 +19,7 @@ void add(stack_t **stack, unsigned int ln)
 
 	tmp = (*stack)->next;
 	add = tmp->n + tmp->prev->n;
-	tmp->n = sub;
+	tmp->n = add;
 	free(tmp->prev);
 	*stack = tmp;
 	tmp->prev = NULL;
