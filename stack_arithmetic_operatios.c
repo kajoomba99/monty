@@ -7,15 +7,15 @@
  */
 void add(stack_t **stack, unsigned int ln)
 {
-	stack_t *tmp = NULL;
+	stack_t (*tmp) = (*stack)->next;
 	int add;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", ln);
 		free_prog();
 	}
-	tmp = (*stack)->next;
+
 	add = tmp->n + tmp->prev->n;
 	tmp->n = add;
 	free(tmp->prev);
