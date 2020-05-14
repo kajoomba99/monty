@@ -24,19 +24,15 @@ int main(int argc, char **argv)
 void swap(stack_t **stack, unsigned int ln)
 {
 	int temp;
-	stack_t *next = NULL;
 
-	if (*stack != NULL)
-		next = (*stack)->next;
-
-	if (stack == NULL || *stack == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", ln);
 		free_prog();
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack)->n;
-	(*stack)->n = next->n;
+	(*stack)->n = (*stack)->next->n;
 	(*stack)->next->n = temp;
 }
 /**
