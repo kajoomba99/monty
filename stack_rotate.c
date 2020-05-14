@@ -9,7 +9,7 @@ void rotl(stack_t **stack, unsigned int ln)
 	stack_t *temp = *stack, *last = *stack;
 
 	(void) ln;
-	if (stack != NULL && *stack != NULL)
+	if (stack != NULL && *stack != NULL && (*stack)->next != NULL)
 	{
 		*stack = (*stack)->next;
 		(*stack)->prev = NULL;
