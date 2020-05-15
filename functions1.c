@@ -55,7 +55,7 @@ void choose_instruction(unsigned int ln)
 	instruction_t options[] = {{"pall", pall}, {"pint", pint}, {"pop", pop},
 	{"swap", swap}, {"add", add}, {"sub", sub}, {"div", _div},
 	{"mul", _mul}, {"mod", _mod}, {"nop", nop}, {"pchar", pchar},
-	{"pstr", pstr}, {"rotl", rotl}, {NULL, NULL}};
+	{"pstr", pstr}, {"rotl", rotl}, {"rotr", rotr}, {NULL, NULL}};
 	token = strtok(variables.line, " \n");
 	if (token == NULL || token[0] == '#')
 		return;
